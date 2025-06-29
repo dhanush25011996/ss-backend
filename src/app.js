@@ -1,10 +1,9 @@
 // src/app.js
 const express = require("express");
 const cors = require("cors");
-const errorHandler = require("./middlewares/errorHandler");
 const authRoutes = require("./routes/authRoutes");
 const streakRoutes = require("./routes/streakRoutes");
-const quoteRoutes = require("./routes/quoteRoutes")
+const quoteRoutes = require("./routes/quoteRoutes");
 
 const app = express();
 
@@ -23,7 +22,7 @@ app.use(express.urlencoded({ extended: true }));
 // Routes
 app.use("/auth", authRoutes);
 app.use("/streak", streakRoutes);
-app.use("/quote", quoteRoutes )
+app.use("/quote", quoteRoutes);
 
 // Health check route
 app.get("/health", (req, res) => {
@@ -41,8 +40,5 @@ app.use("*", (req, res) => {
     message: "Route not found",
   });
 });
-
-// Error handling middleware
-app.use(errorHandler);
 
 module.exports = app;
